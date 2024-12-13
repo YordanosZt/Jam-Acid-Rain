@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://h1xtfw4e7ss7"]
+
+[ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_42kqe"]
+[ext_resource type="PackedScene" uid="uid://dnkahrqopl4u2" path="res://Scenes/Levels/level_one.tscn" id="2_e1048"]
+[ext_resource type="FontFile" uid="uid://bl13cdmhijset" path="res://Assets/Roboto-Medium.ttf" id="3_k03jx"]
+
+[node name="StartMenu" type="CanvasLayer"]
+script = ExtResource("1_42kqe")
+first_level = ExtResource("2_e1048")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0646966, 0.0646965, 0.0646965, 1)
+
+[node name="Label2" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 566.0
+offset_right = 679.0
+offset_bottom = 743.0
+scale = Vector2(0.268767, 0.268767)
+theme_override_fonts/font = ExtResource("3_k03jx")
+theme_override_font_sizes/font_size = 48
+text = "A/LEFT ARROW - move left
+D/RIGHT ARROW - move right
+Space/W/UP ARROW -  jump"
+
+[node name="Label3" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 929.0
+offset_top = 568.0
+offset_right = 1565.0
+offset_bottom = 745.0
+scale = Vector2(0.268767, 0.268767)
+theme_override_colors/font_color = Color(0.262745, 0.819608, 0.819608, 1)
+theme_override_fonts/font = ExtResource("3_k03jx")
+theme_override_font_sizes/font_size = 56
+text = "Hint: Shield and Acidity 
+run out over tme"
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -122.0
+offset_right = 63.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "AVOID THE ACID"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(64, 16)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -15.0
+offset_right = 92.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Start Game"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

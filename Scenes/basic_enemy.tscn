@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0ij3trdjbi4t"]
+
+[ext_resource type="Texture2D" uid="uid://cohefxyukekc7" path="res://Assets/Slime_Move_Spritesheet.png" id="1_m2km0"]
+[ext_resource type="Script" path="res://Scripts/basic_enemy.gd" id="1_rf85d"]
+[ext_resource type="Script" path="res://Scripts/basic_enemy_ray.gd" id="3_wkeua"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ik5xl"]
+radius = 7.07107
+
+[node name="BasicEnemy" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_rf85d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -11)
+scale = Vector2(0.363636, 0.363636)
+texture = ExtResource("1_m2km0")
+hframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ik5xl")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(10, 0)
+collision_mask = 19
+collide_with_areas = true
+script = ExtResource("3_wkeua")
+
+[connection signal="onHit" from="RayCast2D" to="." method="_on_ray_cast_2d_on_hit"]

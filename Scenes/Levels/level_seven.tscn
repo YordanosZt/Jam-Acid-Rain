@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy4s1hea3goqu"]
+
+[ext_resource type="PackedScene" uid="uid://c6w2cknkqgjbq" path="res://Scenes/game.tscn" id="1_4rac2"]
+[ext_resource type="PackedScene" uid="uid://btg0w5mw3ksa" path="res://Scenes/Levels/level_eight.tscn" id="2_5cndg"]
+[ext_resource type="PackedScene" uid="uid://m3xdf5wtfhcd" path="res://Scenes/Ground Elements/ground.tscn" id="2_a8fwo"]
+[ext_resource type="PackedScene" uid="uid://bf2q3m2ppaels" path="res://Scenes/Items/bucket.tscn" id="3_nug8y"]
+[ext_resource type="FontFile" uid="uid://bl13cdmhijset" path="res://Assets/Roboto-Medium.ttf" id="5_0vkrj"]
+
+[node name="Game" instance=ExtResource("1_4rac2")]
+next_level = ExtResource("2_5cndg")
+uses_gun = true
+
+[node name="Player" parent="." index="0"]
+position = Vector2(-224, 120)
+
+[node name="Camera2D" parent="." index="1"]
+zoom = Vector2(2, 2)
+
+[node name="AcidRain" parent="." index="2"]
+scale = Vector2(1, 1.2373)
+
+[node name="Shield" parent="." index="3"]
+visible = false
+position = Vector2(-317, 196)
+
+[node name="EndDoor" parent="." index="4"]
+position = Vector2(208, 122)
+
+[node name="Ground" parent="." index="5" instance=ExtResource("2_a8fwo")]
+position = Vector2(0, 152)
+scale = Vector2(29.56, 1)
+
+[node name="Ground2" parent="." index="6" instance=ExtResource("2_a8fwo")]
+position = Vector2(0, -153)
+scale = Vector2(29.56, 1)
+
+[node name="Ground3" parent="." index="7" instance=ExtResource("2_a8fwo")]
+position = Vector2(278, 0)
+scale = Vector2(1, 15.88)
+
+[node name="Ground4" parent="." index="8" instance=ExtResource("2_a8fwo")]
+position = Vector2(-288, 3)
+scale = Vector2(1, 15.88)
+
+[node name="Bucket" parent="." index="9" instance=ExtResource("3_nug8y")]
+position = Vector2(-65, 125)
+
+[node name="Label2" type="Label" parent="." index="10"]
+offset_left = -259.0
+offset_top = -118.0
+offset_right = 444.0
+offset_bottom = 59.0
+scale = Vector2(0.268767, 0.268767)
+theme_override_fonts/font = ExtResource("5_0vkrj")
+theme_override_font_sizes/font_size = 48
+text = "Right Click/E - Shoot push  bullet
+Left Click/Q - Shoot pull bullet"
+
+[node name="Label3" type="Label" parent="." index="11"]
+offset_left = -160.0
+offset_top = 95.0
+offset_right = 543.0
+offset_bottom = 272.0
+scale = Vector2(0.268767, 0.268767)
+theme_override_fonts/font = ExtResource("5_0vkrj")
+theme_override_font_sizes/font_size = 24
+text = "Push bucket to acid and 
+pull to yourself"
+horizontal_alignment = 1

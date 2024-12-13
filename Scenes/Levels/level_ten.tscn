@@ -1,0 +1,107 @@
+[gd_scene load_steps=7 format=3 uid="uid://ntnbvu3yp2so"]
+
+[ext_resource type="PackedScene" uid="uid://c6w2cknkqgjbq" path="res://Scenes/game.tscn" id="1_uys1x"]
+[ext_resource type="PackedScene" uid="uid://psl2c4gjw1pw" path="res://Scenes/Ground Elements/acid_rain.tscn" id="2_pymno"]
+[ext_resource type="PackedScene" uid="uid://m3xdf5wtfhcd" path="res://Scenes/Ground Elements/ground.tscn" id="2_qivpa"]
+[ext_resource type="PackedScene" uid="uid://c74a656ytewuk" path="res://Scenes/Ground Elements/door.tscn" id="3_iqa0c"]
+[ext_resource type="PackedScene" uid="uid://bf2q3m2ppaels" path="res://Scenes/Items/bucket.tscn" id="5_qevoi"]
+[ext_resource type="PackedScene" uid="uid://cvhx35glhbyb0" path="res://Scenes/Items/key.tscn" id="6_f5udv"]
+
+[node name="Game" instance=ExtResource("1_uys1x")]
+uses_gun = true
+
+[node name="Player" parent="." index="0"]
+position = Vector2(0, 168)
+
+[node name="Camera2D" parent="." index="1"]
+zoom = Vector2(1.5, 1.5)
+
+[node name="AcidRain" parent="." index="2"]
+position = Vector2(136, 0)
+scale = Vector2(3.53807, 1.76)
+
+[node name="AcidRain2" parent="." index="3" instance=ExtResource("2_pymno")]
+position = Vector2(-296, 2)
+scale = Vector2(2.17807, 1.76)
+
+[node name="Shield" parent="." index="4"]
+position = Vector2(-1, -115)
+
+[node name="EndDoor" parent="." index="5"]
+position = Vector2(291, -136)
+
+[node name="Ground" parent="." index="6" instance=ExtResource("2_qivpa")]
+position = Vector2(0, 207)
+scale = Vector2(39.56, 1)
+
+[node name="Ground2" parent="." index="7" instance=ExtResource("2_qivpa")]
+position = Vector2(0, -206)
+scale = Vector2(38.96, 1)
+
+[node name="Ground3" parent="." index="8" instance=ExtResource("2_qivpa")]
+position = Vector2(374, 0)
+scale = Vector2(1, 22.16)
+
+[node name="Ground4" parent="." index="9" instance=ExtResource("2_qivpa")]
+position = Vector2(-374, 4)
+scale = Vector2(1, 21.72)
+
+[node name="Ground5" parent="." index="10" instance=ExtResource("2_qivpa")]
+position = Vector2(320, -107)
+scale = Vector2(5.28, 1)
+
+[node name="Ground6" parent="." index="11" instance=ExtResource("2_qivpa")]
+position = Vector2(-23, -96)
+scale = Vector2(3.96, 1)
+
+[node name="Door" parent="." index="12" instance=ExtResource("3_iqa0c")]
+position = Vector2(-58, -123)
+
+[node name="Door2" parent="." index="13" instance=ExtResource("3_iqa0c")]
+position = Vector2(-58, -159)
+
+[node name="Ground7" parent="." index="14" instance=ExtResource("2_qivpa")]
+position = Vector2(-85, 159)
+scale = Vector2(3.8, 0.600001)
+
+[node name="Ground9" parent="." index="15" instance=ExtResource("2_qivpa")]
+position = Vector2(-304, 88)
+scale = Vector2(3.8, 0.600001)
+
+[node name="Ground10" parent="." index="16" instance=ExtResource("2_qivpa")]
+position = Vector2(-184, 48)
+scale = Vector2(3.8, 0.600001)
+
+[node name="Ground11" parent="." index="17" instance=ExtResource("2_qivpa")]
+position = Vector2(-304, 8)
+scale = Vector2(3.8, 0.600001)
+
+[node name="Ground12" parent="." index="18" instance=ExtResource("2_qivpa")]
+position = Vector2(-168, -16)
+scale = Vector2(3.8, 0.600001)
+
+[node name="Ground13" parent="." index="19" instance=ExtResource("2_qivpa")]
+position = Vector2(-72, -56)
+scale = Vector2(3.8, 0.600001)
+
+[node name="Ground14" parent="." index="20" instance=ExtResource("2_qivpa")]
+position = Vector2(56, -32)
+scale = Vector2(3.8, 0.600001)
+
+[node name="Ground15" parent="." index="21" instance=ExtResource("2_qivpa")]
+position = Vector2(168, -64)
+scale = Vector2(3.8, 0.600001)
+
+[node name="Ground16" parent="." index="22" instance=ExtResource("2_qivpa")]
+position = Vector2(256, -96)
+scale = Vector2(3.8, 0.600001)
+
+[node name="Ground8" parent="." index="23" instance=ExtResource("2_qivpa")]
+position = Vector2(-264, 136)
+scale = Vector2(10, 0.600001)
+
+[node name="Bucket" parent="." index="24" instance=ExtResource("5_qevoi")]
+position = Vector2(-200, 120)
+
+[node name="Key" parent="." index="25" instance=ExtResource("6_f5udv")]
+position = Vector2(-304, -8)

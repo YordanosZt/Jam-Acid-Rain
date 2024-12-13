@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf2q3m2ppaels"]
+
+[ext_resource type="Script" path="res://Scripts/bucket.gd" id="1_uiwar"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yxb16"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_06drr"]
+radius = 8.0
+
+[node name="Bucket" type="RigidBody2D"]
+script = ExtResource("1_uiwar")
+
+[node name="AcidIndicator" type="ColorRect" parent="."]
+visible = false
+offset_left = -6.0
+offset_top = -8.0
+offset_right = 6.0
+offset_bottom = -5.0
+color = Color(0.094644, 0.406604, 0.576149, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.523781, 0.523781, 0.523781, 1)
+polygon = PackedVector2Array(-8, -8, -3, 8, 3, 8, 8, -8, 6, -8, 3, -5, -3, -5, -6, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yxb16")
+
+[node name="AcidRainDet" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AcidRainDet"]
+shape = SubResource("CircleShape2D_06drr")
+
+[connection signal="area_entered" from="AcidRainDet" to="." method="_on_acid_rain_det_area_entered"]

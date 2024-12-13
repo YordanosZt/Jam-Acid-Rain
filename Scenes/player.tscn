@@ -1,0 +1,171 @@
+[gd_scene load_steps=18 format=3 uid="uid://b8piu551sq2dv"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_ps7yi"]
+[ext_resource type="Texture2D" uid="uid://dg042eb23tbvs" path="res://Assets/character_roundYellow.png" id="2_07whc"]
+[ext_resource type="PackedScene" uid="uid://b53w3qhy1ty43" path="res://Scenes/Items/shield.tscn" id="3_ef1c7"]
+[ext_resource type="PackedScene" uid="uid://cfvhoi5gmp1nn" path="res://Scenes/Items/gun.tscn" id="4_n3gvh"]
+[ext_resource type="AudioStream" uid="uid://bj3um3owfma1x" path="res://Audio/jump_sound.wav" id="5_qf8h4"]
+[ext_resource type="AudioStream" uid="uid://ddvs7jvh401bx" path="res://Audio/hurt_sound.wav" id="6_0to0k"]
+[ext_resource type="AudioStream" uid="uid://bkn7f7bjl5goa" path="res://Audio/hit_sound.wav" id="7_3rw32"]
+[ext_resource type="AudioStream" uid="uid://dc1huis78a104" path="res://Audio/pickup_sound.wav" id="7_a17dc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aq6mn"]
+size = Vector2(10, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3a5m"]
+size = Vector2(12, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pikoh"]
+size = Vector2(12, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b68ga"]
+size = Vector2(12, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pcw4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a20g1"]
+size = Vector2(12, 20)
+
+[sub_resource type="Animation" id="Animation_e6xr5"]
+resource_name = "die"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtAudio:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reload"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ng2i7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtAudio:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7orj3"]
+_data = {
+"RESET": SubResource("Animation_ng2i7"),
+"die": SubResource("Animation_e6xr5")
+}
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 10
+script = ExtResource("1_ps7yi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("2_07whc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_aq6mn")
+
+[node name="AcidDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AcidDetector"]
+shape = SubResource("RectangleShape2D_t3a5m")
+debug_color = Color(0.846247, 0.340156, 0.433682, 0.42)
+
+[node name="ShieldDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldDetector"]
+shape = SubResource("RectangleShape2D_pikoh")
+debug_color = Color(0.141055, 0.639868, 0.260587, 0.42)
+
+[node name="EndDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndDetector"]
+shape = SubResource("RectangleShape2D_b68ga")
+debug_color = Color(0.590907, 0.542413, 0.211447, 0.42)
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
+shape = SubResource("RectangleShape2D_4pcw4")
+
+[node name="BucketDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BucketDetector"]
+shape = SubResource("RectangleShape2D_a20g1")
+
+[node name="Shield" parent="." instance=ExtResource("3_ef1c7")]
+visible = false
+position = Vector2(0, -19)
+
+[node name="Gun" parent="." instance=ExtResource("4_n3gvh")]
+visible = false
+position = Vector2(0, 0)
+rotation = -0.0131142
+
+[node name="AcidicTimerLabel" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -46.0
+offset_right = 10.0
+offset_bottom = -23.0
+horizontal_alignment = 1
+
+[node name="AcidicTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="JumpAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_qf8h4")
+
+[node name="PickupAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_a17dc")
+
+[node name="LandAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_3rw32")
+volume_db = -10.0
+
+[node name="HurtAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_0to0k")
+
+[node name="DieAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7orj3")
+}
+
+[connection signal="area_entered" from="AcidDetector" to="." method="_on_acid_detector_area_entered"]
+[connection signal="area_exited" from="AcidDetector" to="." method="_on_acid_detector_area_exited"]
+[connection signal="area_entered" from="ShieldDetector" to="." method="_on_shield_detector_area_entered"]
+[connection signal="area_entered" from="EndDetector" to="." method="_on_end_detector_area_entered"]
+[connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]
+[connection signal="body_entered" from="BucketDetector" to="." method="_on_bucket_detector_body_entered"]
+[connection signal="timeout" from="AcidicTimer" to="." method="_on_acidic_timer_timeout"]

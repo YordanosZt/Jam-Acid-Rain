@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6w2cknkqgjbq"]
+
+[ext_resource type="PackedScene" uid="uid://b8piu551sq2dv" path="res://Scenes/player.tscn" id="1_h5071"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_v7rm8"]
+[ext_resource type="PackedScene" uid="uid://psl2c4gjw1pw" path="res://Scenes/Ground Elements/acid_rain.tscn" id="3_m2hsp"]
+[ext_resource type="PackedScene" uid="uid://b53w3qhy1ty43" path="res://Scenes/Items/shield.tscn" id="4_y3tcu"]
+[ext_resource type="PackedScene" uid="uid://dl8ijxf2ynkh1" path="res://Scenes/Ground Elements/end_door.tscn" id="5_0fk14"]
+[ext_resource type="AudioStream" uid="uid://c41mm6q11yhxu" path="res://Audio/end_sound.wav" id="6_ijajg"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_v7rm8")
+
+[node name="Player" parent="." instance=ExtResource("1_h5071")]
+position = Vector2(-139, 68)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="AcidRain" parent="." instance=ExtResource("3_m2hsp")]
+position = Vector2(64, 2)
+
+[node name="Shield" parent="." instance=ExtResource("4_y3tcu")]
+position = Vector2(-49, 80)
+
+[node name="EndDoor" parent="." instance=ExtResource("5_0fk14")]
+position = Vector2(151, 67)
+
+[node name="EndAudio" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("6_ijajg")
+volume_db = -7.429

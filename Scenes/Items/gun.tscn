@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfvhoi5gmp1nn"]
+
+[ext_resource type="Texture2D" uid="uid://dgpckjtfbeuem" path="res://Assets/item_gun.png" id="1_mop80"]
+[ext_resource type="Script" path="res://Scripts/gun.gd" id="1_w1hle"]
+[ext_resource type="Texture2D" uid="uid://dbtbbspu7bmt6" path="res://Assets/crosshair046.png" id="3_6it41"]
+[ext_resource type="AudioStream" uid="uid://dbbo61abylavp" path="res://Audio/shoot_sound.wav" id="4_p3w22"]
+
+[node name="Gun" type="Area2D"]
+position = Vector2(446, 270)
+script = ExtResource("1_w1hle")
+
+[node name="WeaponPivot" type="Marker2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponPivot"]
+position = Vector2(15, 0)
+scale = Vector2(0.21875, 0.21875)
+texture = ExtResource("1_mop80")
+
+[node name="FiringPoint" type="Marker2D" parent="WeaponPivot/Sprite2D"]
+position = Vector2(32, 0)
+
+[node name="crosshair" type="Sprite2D" parent="."]
+position = Vector2(40, -2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_6it41")
+
+[node name="ShootAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_p3w22")

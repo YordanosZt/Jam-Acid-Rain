@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=3 uid="uid://b8piu551sq2dv"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_ps7yi"]
+[ext_resource type="Texture2D" uid="uid://dg042eb23tbvs" path="res://Assets/character_roundYellow.png" id="2_07whc"]
+[ext_resource type="PackedScene" uid="uid://b53w3qhy1ty43" path="res://Scenes/Items/shield.tscn" id="3_ef1c7"]
+[ext_resource type="PackedScene" uid="uid://cfvhoi5gmp1nn" path="res://Scenes/Items/gun.tscn" id="4_n3gvh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aq6mn"]
+size = Vector2(10, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3a5m"]
+size = Vector2(12, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pikoh"]
+size = Vector2(12, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b68ga"]
+size = Vector2(12, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pcw4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a20g1"]
+size = Vector2(12, 20)
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 10
+script = ExtResource("1_ps7yi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("2_07whc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_aq6mn")
+
+[node name="AcidDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AcidDetector"]
+shape = SubResource("RectangleShape2D_t3a5m")
+debug_color = Color(0.846247, 0.340156, 0.433682, 0.42)
+
+[node name="ShieldDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldDetector"]
+shape = SubResource("RectangleShape2D_pikoh")
+debug_color = Color(0.141055, 0.639868, 0.260587, 0.42)
+
+[node name="EndDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndDetector"]
+shape = SubResource("RectangleShape2D_b68ga")
+debug_color = Color(0.590907, 0.542413, 0.211447, 0.42)
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
+shape = SubResource("RectangleShape2D_4pcw4")
+
+[node name="BucketDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BucketDetector"]
+shape = SubResource("RectangleShape2D_a20g1")
+
+[node name="Shield" parent="." instance=ExtResource("3_ef1c7")]
+visible = false
+position = Vector2(0, -19)
+
+[node name="Gun" parent="." instance=ExtResource("4_n3gvh")]
+visible = false
+position = Vector2(0, 0)
+rotation = -0.0131142
+
+[node name="AcidicTimerLabel" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -30.0
+offset_right = 10.0
+offset_bottom = -7.0
+text = "
+"
+horizontal_alignment = 1
+
+[node name="AcidicTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="area_entered" from="AcidDetector" to="." method="_on_acid_detector_area_entered"]
+[connection signal="area_exited" from="AcidDetector" to="." method="_on_acid_detector_area_exited"]
+[connection signal="area_entered" from="ShieldDetector" to="." method="_on_shield_detector_area_entered"]
+[connection signal="area_entered" from="EndDetector" to="." method="_on_end_detector_area_entered"]
+[connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]
+[connection signal="body_entered" from="BucketDetector" to="." method="_on_bucket_detector_body_entered"]
+[connection signal="timeout" from="AcidicTimer" to="." method="_on_acidic_timer_timeout"]

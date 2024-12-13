@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk36ipxwcaav3"]
+
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_34jfl"]
+[ext_resource type="Texture2D" uid="uid://c2ec732vxlije" path="res://Assets/character_handPurple.png" id="2_l2618"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ydelh"]
+radius = 5.0
+
+[node name="bullet_pull" type="Area2D"]
+top_level = true
+rotation = 0.77208
+collision_mask = 33
+script = ExtResource("1_34jfl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.65625, 0.65625)
+texture = ExtResource("2_l2618")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ydelh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

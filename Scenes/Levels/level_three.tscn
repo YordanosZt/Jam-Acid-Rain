@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bygcb2crn35tx"]
+
+[ext_resource type="PackedScene" uid="uid://c6w2cknkqgjbq" path="res://Scenes/game.tscn" id="1_ism2b"]
+[ext_resource type="PackedScene" uid="uid://m3xdf5wtfhcd" path="res://Scenes/Ground Elements/ground.tscn" id="2_324w3"]
+[ext_resource type="PackedScene" uid="uid://bgok7fpoiay5l" path="res://Scenes/Levels/level_four.tscn" id="2_nyogn"]
+[ext_resource type="PackedScene" uid="uid://c74a656ytewuk" path="res://Scenes/Ground Elements/door.tscn" id="3_e6kqc"]
+[ext_resource type="PackedScene" uid="uid://cvhx35glhbyb0" path="res://Scenes/Items/key.tscn" id="4_dvf8y"]
+
+[node name="Game" instance=ExtResource("1_ism2b")]
+next_level = ExtResource("2_nyogn")
+
+[node name="Player" parent="." index="0"]
+position = Vector2(-144, 120)
+
+[node name="Camera2D" parent="." index="1"]
+zoom = Vector2(2, 2)
+
+[node name="AcidRain" parent="." index="2"]
+position = Vector2(136, 0)
+scale = Vector2(1.4659, 1.95595)
+
+[node name="Shield" parent="." index="3"]
+position = Vector2(-239, 125)
+
+[node name="EndDoor" parent="." index="4"]
+position = Vector2(228, 122)
+
+[node name="Ground" parent="." index="5" instance=ExtResource("2_324w3")]
+position = Vector2(0, 152)
+scale = Vector2(29.56, 1)
+
+[node name="Ground2" parent="." index="6" instance=ExtResource("2_324w3")]
+position = Vector2(0, -153)
+scale = Vector2(29.56, 1)
+
+[node name="Ground3" parent="." index="7" instance=ExtResource("2_324w3")]
+position = Vector2(278, 0)
+scale = Vector2(1, 15.88)
+
+[node name="Ground4" parent="." index="8" instance=ExtResource("2_324w3")]
+position = Vector2(-280, 0)
+scale = Vector2(1, 15.88)
+
+[node name="Door" parent="." index="9" instance=ExtResource("3_e6kqc")]
+position = Vector2(-208, 120)
+scale = Vector2(1, 1.32)
+
+[node name="Ground5" parent="." index="10" instance=ExtResource("2_324w3")]
+position = Vector2(-238, 88)
+scale = Vector2(3.68, 1.01843)
+
+[node name="Key" parent="." index="11" instance=ExtResource("4_dvf8y")]
+position = Vector2(-24, 128)
